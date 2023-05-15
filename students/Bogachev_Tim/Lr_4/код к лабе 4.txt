@@ -1,0 +1,52 @@
+create table books_lr4
+(
+	id integer primary key,
+	name varchar(255),
+	author varchar(255),
+	year_of_creation integer,
+	number_of_pages integer,
+	gener varchar(255),
+	publishing_house varchar(255),
+	price decimal(10,2)
+);
+
+create table reader_lr4
+(
+	id integer primary key,
+	first_name varchar(255),
+	last_name varchar(255),
+	date_of_brith date,
+	adress varchar(255),
+	telephone varchar(20)
+);
+
+create table issuance_lr4
+(
+	id integer primary key,
+	id_reader_lr4 integer references reader_lr4 (id),
+	id_book_lr4 integer references books_lr4 (id),
+	date_of_issue date,
+	return_date date
+);
+
+код создания:
+insert into books_lr4 values
+(1,'Война и мир','Лев Толстой',1869,1225,'Роман','Москва',1500.00),
+(2,'Преступление и наказание','Федор Достаевский',1866,551,'Роман','Санкт-Петербург',900.00),
+(3,'1984','Джорж Оруэлл',1949,328,'Антиутопия','Лондон',700.00),
+(4,'Мастер и Маргарита','Михаил Булгаков',1966,480,'Роман','Москва',1000.00),
+(5,'Уилсс','Джеймс Джонс',1922,732,'Роман','Париж',1200.00),
+(6,'Грозный перевал','Эмили Бронете',1847,400,'Роман','Лондон',800.00),
+(7,'Анна Каренина','Лев Толстой',1877,864,'Роман','Москва',1100.00);
+
+insert into reader_lr4 values
+(1,'Иван','Иванов','1985-01-01','Москва','+7 (999)999-99-99'),
+(2,'Петер','Петров','1990-03-15','Санкт-Петербург','+7 (888)888-88-88'),
+(3,'Анна','Сидорова','1982-12-25','Москва','+7 (777)777-77-77'),
+(4,'Елена','Кузнецова','1975-06-10','Казань','+7 (666)666-66-66');
+insert into issuance_lr4 values
+(1,1,2,'2021-01-01','2021-01-15'),
+(2,3,1,'2021-02-01','2021-02-15'),
+(3,2,4,'2021-03-01','2021-03-15'),
+(4,4,7,'2021-04-01','2021-04-15'),
+(5,1,5,'2021-05-01','2021-05-15');

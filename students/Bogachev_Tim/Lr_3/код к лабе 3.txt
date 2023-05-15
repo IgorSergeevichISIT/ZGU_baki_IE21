@@ -58,3 +58,29 @@ insert into book_library_1 values
 (2,'Солнечный пр-д,2',2,'Дубровский'),
 (3,'Солнечный пр-д,2',4,'Ревизор'),
 (4,'Солнечный пр-д,2',8, 'Отцы и дети')
+
+копирование данных из  book_library_1 в book_library_2:
+insert into book_library_2 select * from book_library_1;
+select * from book_library_2
+
+DELETE:
+DELETE from book_library_2 where name_book <> 'Война и мир';
+
+DELETE + RETERNING:
+
+TRUNCATE:
+TRUNCATE book_library_1;
+select * from book_library_1
+
+Восстановление:
+insert into book_library_1 values
+(1,'Солнечный пр-д,2',1,'Война и мир'),
+(2,'Солнечный пр-д,2',2,'Дубровский'),
+(3,'Солнечный пр-д,2',4,'Ревизор'),
+(4,'Солнечный пр-д,2',8, 'Отцы и дети')
+
+insert into book_library_2 values
+(1,'Солнечный пр-д,2',1,'Война и мир'),
+(2,'Солнечный пр-д,2',2,'Дубровский'),
+(3,'Солнечный пр-д,2',4,'Ревизор'),
+(4,'Солнечный пр-д,2',8, 'Отцы и дети')
