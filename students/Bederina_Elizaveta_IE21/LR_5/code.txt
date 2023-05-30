@@ -1,0 +1,43 @@
+create view view1 as select * from lekar 
+where id_lek = (select id_otdel from otdelenie  where nameotdel like 'ЛО%');
+select * from view1 
+create materialized view view2 as select id_otdel, count(*) from doc 
+group by id_otdel order by count(*) desc;
+select * from view2 
+create  view view3 as select * from otdelenie where nameotdel  like '%я'
+update view5 set id_otdel = '5' where id_otdel = '2'
+create view ser as select * from service
+select * from  view3
+update view3 set nameotdel = 'Отолоренголок' 
+where nameotdel = 'ЛОР'
+Select * from view3
+update view1 set namelec = 'Свечи ушные' where id_lek = '2' 
+select * from view1
+insert into view1 values
+(6, 'Лекарство от кашля', 3)
+select * from  lekar 
+delete from view1 where id_lek = '6'
+REFRESH MATERIALIZED VIEW view2
+create index idx on doc(fio);
+create index idx_2 on price_leck1(name, price) where price > 40
+create unique index idx_3 on view2 (id_otdel, count)
+create index ind_4 on price_leck1 (name, price desc)
+alter view view1 rename to view1_
+drop index ind_4 ; drop view view1_; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
