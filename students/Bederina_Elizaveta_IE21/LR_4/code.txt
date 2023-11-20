@@ -1,0 +1,29 @@
+select * from price_leck1 where price between 15 and 1000
+select * from otdelenie where nameotdel  like '%я'
+select sum(price) as "Сумма цен" from price_leck1
+select * from dolzhn, pacient;
+select id_otdel, count(*) from doc group by id_otdel;
+select id_otdel, count(*) from doc group by id_otdel order by count(*) desc;
+select * from price_leck1  where price > (select avg(zp) from doc);
+select * from doc where id_doc < (select id from price_leck1 where price = (select min(price) from price_leck1));
+select * from lekar where id_lek = (select id_otdel from otdelenie  where nameotdel like 'ЛО%');
+select fio from doc union all select fio from pacient;
+select id_otdel from otdelenie intersect all select id_lek from lekar;
+select fio from doc except select fio from pacient;
+select zp, case when zp <= 120 then 'Маленькая' when zp >= 150 then 'Большая' end zp from doc;
+select * from otdelenie join lekar on id_otdel = id_lek where id_lek = 2 
+select id_otdel from otdelenie inner join lekar on otdelenie.id_otdel = lekar.id_lek
+select id_otdel from otdelenie right join lekar on otdelenie.id_otdel = lekar.id_lek
+select * from doc join otdelenie  on doc.id_otdel = otdelenie.id_otdel 
+SELECT id_lek, otdelenie.id_otdel, namelec FROM lekar NATURAL LEFT JOIN otdelenie; 
+with recursive tree (id_cval, name_cval, rank, path) as (
+    select t1.id_cval, t1.name_cval, t1.rank, cast (t1.name_cval as varchar) as path
+    from cval t1 where t1.name_cval = 'Интерн'
+    union
+    select t2.id_cval, t2.name_cval, t2.rank, cast (tree.path || '->' || t2.name_cval as varchar)
+    from cval t2 join tree on (tree.rank = t2.id_cval))
+    select id_cval, name_cval, rank, path from tree 
+
+
+
+
